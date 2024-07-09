@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { retrieveCalls } from '../apis';
 import moment from 'moment';
 import { useNavigate } from 'react-router-dom';
@@ -7,21 +7,8 @@ import { useNavigate } from 'react-router-dom';
 const CallList = ({ activeTab = 'All' }) => {
     const [calls, setCalls] = useState([]);
     const navigate = useNavigate();
-
-    useEffect(() => {
-        mount()
-    }, [mount])
-    useEffect(()=>{
+    const populateCalls = useCallback(()=>{
         setCalls([])
-        populateCalls()
-    },[activeTab])
-    const mount = () => {
-        if(calls.length === 0){
-            populateCalls();
-        }
-
-    }
-    const populateCalls = ()=>{
         retrieveCalls().then(result => {
             if (result?.data && Array.isArray(result.data) && result?.data?.length > 0) {
                 const filtered = result.data.filter((call) => activeTab === 'All' ? !call.is_archived : call.is_archived)
@@ -29,8 +16,23 @@ const CallList = ({ activeTab = 'All' }) => {
                 setCalls(filtered )
             }
 
-        });
-    }
+        })},[setCalls,activeTab]);
+    
+    useEffect(() => {
+        const mount = () => {
+            if(calls.length === 0){
+                populateCalls();
+            }
+    
+        }
+        mount()
+    }, [populateCalls,calls])
+    useEffect(()=>{
+        
+        populateCalls()
+    },[activeTab,populateCalls])
+
+
     const toPage = (url) => {
         navigate(url);
     }

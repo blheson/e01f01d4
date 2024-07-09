@@ -10,28 +10,31 @@ const CallDetails = () => {
   const navigate = useNavigate();
   const params = useParams();
 
+
   useEffect(() => {
-    mount()
-  }, [mount])
-  const mount = async () => {
-    try {
-      if(isMount){
-        return;
+  
+    const mount = async () => {
+      try {
+        if(isMount){
+          return;
+        }
+        const result = await retrieveCall(params.id)
+  
+   
+        setCallData(result.data)
+        // setIsMount(true)
+  
+      } catch (error) {
+  
+      } finally {
+        setIsMount(true)
+  
       }
-      const result = await retrieveCall(params.id)
-
- 
-      setCallData(result.data)
-      // setIsMount(true)
-
-    } catch (error) {
-
-    } finally {
-      setIsMount(true)
-
+  
     }
+    mount();
+  }, [params.id, isMount])
 
-  }
   const handleArchive = () => {
  
     archiveCall(callData.id, { is_archived: !callData.is_archived }).then((result) => {
