@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { retrieveCalls } from '../apis';
 import moment from 'moment';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CallList = ({ activeTab = 'All' }) => {
     const [calls, setCalls] = useState([]);
@@ -13,7 +13,7 @@ const CallList = ({ activeTab = 'All' }) => {
     }, [])
     useEffect(()=>{
         setCalls([])
-populateCalls()
+        populateCalls()
     },[activeTab])
     const mount = () => {
        populateCalls();

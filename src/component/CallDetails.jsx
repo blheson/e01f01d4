@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { archiveCall, retrieveCall } from '../apis';
 import moment from 'moment';
-import { toPage } from '../utils/routes';
 import { BsArrowLeft } from 'react-icons/bs';
 
 const CallDetails = () => {

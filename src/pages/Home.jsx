@@ -18,12 +18,12 @@ const Home = () => {
               }}>All</a>
           </li> */}
           <li className="me-2 ">
-             <a  aria-current="page" className={`inline-block p-4 w-[80px] rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300  ${activeTab == 'All'?  activetabClass() :''}`} onClick={()=>{
+             <a  aria-current="page" className={`inline-block p-4 w-[80px] rounded-t-lg hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300  ${activeTab === 'All'?  activetabClass() :''}`} onClick={()=>{
                 setActiveTab('All')
               }}>All</a>
           </li>
           <li className="me-2">
-                <a className={`inline-block p-4 rounded-t-lg w-[80px] hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 ${activeTab == 'Archived'? activetabClass():''}`} onClick={()=>{
+                <a className={`inline-block p-4 rounded-t-lg w-[80px] hover:text-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 dark:hover:text-gray-300 ${activeTab === 'Archived'? activetabClass():''}`} onClick={()=>{
                 setActiveTab('Archived')
               }}>Archived</a>
           </li>
