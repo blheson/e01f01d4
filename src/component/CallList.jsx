@@ -7,33 +7,35 @@ import { useNavigate } from 'react-router-dom';
 const CallList = ({ activeTab = 'All' }) => {
     const [calls, setCalls] = useState([]);
     const navigate = useNavigate();
-    const populateCalls = useCallback(()=>{
+    const populateCalls = useCallback(() => {
         console.log("mounted populateCalls")
 
         setCalls([])
         retrieveCalls().then(result => {
             if (result?.data && Array.isArray(result.data) && result?.data?.length > 0) {
                 const filtered = result.data.filter((call) => activeTab === 'All' ? !call.is_archived : call.is_archived)
-       
-                setCalls(filtered )
+
+                setCalls(filtered)
             }
 
-        })},[activeTab]);
-    
+        })
+    }, [activeTab]);
+
+
     useEffect(() => {
-        console.log("mounted")
+
         const mount = () => {
-            if(calls.length === 0){
+            if (calls.length === 0) {
                 populateCalls();
             }
         }
-        mount()
+        mount();
+        // eslint-disable-next-line
     }, [])
-    useEffect(()=>{
-        console.log("mouiveTab,populateCalls")
-        
+    useEffect(() => {
         populateCalls()
-    },[activeTab])
+        // eslint-disable-next-line
+    }, [activeTab])
 
 
     const toPage = (url) => {
