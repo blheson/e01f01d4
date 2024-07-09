@@ -14,6 +14,7 @@ const CallDetails = () => {
   useEffect(() => {
   
     const mount = async () => {
+      console.log("mounted")
       try {
         if(isMount){
           return;

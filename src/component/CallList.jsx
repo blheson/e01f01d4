@@ -8,6 +8,8 @@ const CallList = ({ activeTab = 'All' }) => {
     const [calls, setCalls] = useState([]);
     const navigate = useNavigate();
     const populateCalls = useCallback(()=>{
+        console.log("mounted populateCalls")
+
         setCalls([])
         retrieveCalls().then(result => {
             if (result?.data && Array.isArray(result.data) && result?.data?.length > 0) {
@@ -16,21 +18,22 @@ const CallList = ({ activeTab = 'All' }) => {
                 setCalls(filtered )
             }
 
-        })},[setCalls,activeTab]);
+        })},[activeTab]);
     
     useEffect(() => {
+        console.log("mounted")
         const mount = () => {
             if(calls.length === 0){
                 populateCalls();
             }
-    
         }
         mount()
-    }, [populateCalls,calls])
+    }, [])
     useEffect(()=>{
+        console.log("mouiveTab,populateCalls")
         
         populateCalls()
-    },[activeTab,populateCalls])
+    },[activeTab])
 
 
     const toPage = (url) => {

@@ -6,7 +6,7 @@ const Home = () => {
   const [activeTab, setActiveTab] = useState('All');
  
   function activetabClass(){
-    return 'active text-white dark:bg-gray-800 '
+    return 'active text-white dark:bg-gray-800 bg-gray-800'
   }
   return (
       <div className="container-view">
