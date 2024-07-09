@@ -34,6 +34,7 @@ const CallDetails = () => {
       }
     }
     mount();
+    // eslint-disable-next-line
   }, [params.id, isMount])
 
   const handleArchive = () => {
