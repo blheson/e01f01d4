@@ -53,7 +53,7 @@ const CallList = ({ activeTab = 'All' }) => {
     }
 
     return (
-        <div className="home overflow-scroll mw-[50vh]">
+        <div className="home overflow-scroll max-h-[570px]">
             {
                 calls.map((call) => (
                     <div onClick={() => { toPage(`call/${call.id}`) }} key={call.id} className='my-3 rounded border cursor-pointer p-5 hover:bg-[whitesmoke]'>
