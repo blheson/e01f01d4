@@ -12,9 +12,12 @@ const CallDetails = () => {
 
   useEffect(() => {
     mount()
-  }, [])
+  }, [mount])
   const mount = async () => {
     try {
+      if(isMount){
+        return;
+      }
       const result = await retrieveCall(params.id)
 
  
@@ -77,7 +80,7 @@ const CallDetails = () => {
         <hr className='w-full' />
         <div className={`text-center mt-3 bg-[#f0f1f1] rounded-lg p-4  text-[15px] leading-5 ${callData.call_type === 'missed' ? 'text-[#ff0000]' : ''}`}>
           <div className='text-[15px]'>{callData.direction === 'inbound' ? 'Incoming Call' : 'Outgoing Call'}</div>
-          {callData.call_type != 'missed' && <div className='text-[15px]'>{callData.duration} secs</div>}
+          {callData.call_type !== 'missed' && <div className='text-[15px]'>{callData.duration} secs</div>}
           <div>{moment(callData.created_at).format('DD/mm/yyyy')}</div>
 
         </div>

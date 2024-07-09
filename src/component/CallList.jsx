@@ -10,13 +10,16 @@ const CallList = ({ activeTab = 'All' }) => {
 
     useEffect(() => {
         mount()
-    }, [])
+    }, [mount])
     useEffect(()=>{
         setCalls([])
         populateCalls()
     },[activeTab])
     const mount = () => {
-       populateCalls();
+        if(calls.length === 0){
+            populateCalls();
+        }
+
     }
     const populateCalls = ()=>{
         retrieveCalls().then(result => {
