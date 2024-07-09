@@ -18,8 +18,14 @@ const CallDetails = () => {
         if (isMount) {
           return;
         }
-        const result = await retrieveCall(params.id)
-        setCallData(result.data)
+        const result = await retrieveCall(params.id);
+ 
+        //Redirect to 404 if not found
+        if(result.error){
+          toPage('/404')
+          return;
+        }
+        setCallData(result.data);
 
       } catch (error) {
 
